@@ -1,2 +1,7 @@
 build
 *.o
+.depend
+linuxptp-4.2
+buildroot-2023.02.9
+socket_server
+socket_client

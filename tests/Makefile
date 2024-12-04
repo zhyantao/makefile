@@ -1,3 +1,6 @@
+CURR_DIR := $(shell pwd)
+export DESTDIR := $(CURR_DIR)/build
+
 SITE_PACKAGES_DIR = $(shell python -c "import site; print(site.getsitepackages()[0]);")
 
 TARGETS := socket_server socket_client
@@ -32,6 +35,10 @@ uninstall :
 clean :
 	rm -f *.o *~ core .depend
 	rm -f ${TARGETS}
+
+.PHONY: patch
+patch:
+	@rm -rf $(DESTDIR) && mkdir -p $(DESTDIR)
 
 .PHONY : format
 format:

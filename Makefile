@@ -1,6 +1,6 @@
 CURR_DIR := $(shell pwd)
 
-sub_dir := gpsd gptp python tests
+sub_dir := buildroot gptp tests
 
 all:
 	@for dir in $(sub_dir); do \
