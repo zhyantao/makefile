@@ -1,8 +1,8 @@
 CURR_DIR := $(shell pwd)
 
-BUILDROOT_DIR := $(HOME)/toolchain/buildroot/arm-buildroot-linux-gnueabihf_sdk-buildroot
-SYSROOT := $(BUILDROOT_DIR)/arm-buildroot-linux-gnueabihf/sysroot
-TOOLCHAIN_DIR := $(BUILDROOT_DIR)/bin
+SDK_DIR := $(HOME)/toolchain/buildroot/arm-buildroot-linux-gnueabihf_sdk-buildroot
+SYSROOT := $(SDK_DIR)/arm-buildroot-linux-gnueabihf/sysroot
+TOOLCHAIN_DIR := $(SDK_DIR)/bin
 PATH := $(TOOLCHAIN_DIR):$(PATH)
 
 # cross compile options
