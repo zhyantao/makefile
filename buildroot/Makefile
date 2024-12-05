@@ -7,7 +7,7 @@ TAR_BALL := $(PROJECT_NAME)-$(VERSION).tar.gz
 SRC_DIR := $(CURR_DIR)/$(PROJECT_NAME)-$(VERSION)
 
 # where is the build results?
-export DESTDIR := $(CURR_DIR)/build
+DESTDIR := $(CURR_DIR)/build
 
 # make
 .PHONY: all
