@@ -10,10 +10,10 @@ VERSION := 4.2
 TAR_BALL := $(PROJECT_NAME)-$(VERSION).tgz
 SRC_DIR := $(CURR_DIR)/$(PROJECT_NAME)-$(VERSION)
 
-export EXTRA_CFLAGS += -DHAVE_ONESTEP_P2P
+EXTRA_CFLAGS += -DHAVE_ONESTEP_P2P
 
 # where is the build results?
-export DESTDIR := $(CURR_DIR)/build
+DESTDIR := $(CURR_DIR)/build
 
 # make
 .PHONY: all
