@@ -1,5 +1,5 @@
 CURR_DIR := $(shell pwd)
-export DESTDIR := $(CURR_DIR)/build
+DESTDIR := $(CURR_DIR)/build
 
 SITE_PACKAGES_DIR = $(shell python -c "import site; print(site.getsitepackages()[0]);")
 
