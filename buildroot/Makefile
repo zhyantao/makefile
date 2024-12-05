@@ -54,7 +54,7 @@ diff:
 .PHONY: help
 help:
 	@echo "Requirements: \033[35m sudo apt install -y build-essential make unzip \033[0m"
-	@echo "You can download all packages from \033[35m https://pan.quark.cn/s/a84decc0b4dc\033[0m, then unzip them to \033[31mbuildroot-YYYY-mm-d\033[0m."
+	@echo "You can download all packages from \033[35m https://pan.quark.cn/s/a84decc0b4dc\033[0m, then unzip them to \033[31m $(SRC_DIR)/dl\033[0m"
 	@echo "Some packages can be found at \033[35m https://archive.spacemit.com/buildroot/dl \033[0m"
 	@echo ""
 	@echo "Step 1:\033[35m make patch \033[0m  Apply patches"
