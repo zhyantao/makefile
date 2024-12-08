@@ -27,6 +27,7 @@ clean:
 .PHONY: patch
 patch:
 	tar zxf $(TAR_BALL)
+	@mkdir $(SRC_DIR)/dl
 	@if [ ! -d "patches" ]; then mkdir -p $(CURR_DIR)/patches; fi
 	# @cd $(SRC_DIR) && patch -p1 < $(CURR_DIR)/patches/0000-undefined.patch
 	@rm -rf $(DESTDIR) && mkdir -p $(DESTDIR)
@@ -53,9 +54,11 @@ diff:
 # make help
 .PHONY: help
 help:
-	@echo "Requirements: \033[35m sudo apt install -y build-essential make unzip \033[0m"
-	@echo "You can download all packages from \033[35m https://pan.quark.cn/s/a84decc0b4dc\033[0m, then unzip them to \033[31m $(SRC_DIR)/dl\033[0m"
-	@echo "Some packages can be found at \033[35m https://archive.spacemit.com/buildroot/dl \033[0m"
+	@echo ""
+	@echo "Requirements: \033[35msudo apt install -y build-essential make unzip \033[0m"
+	@echo "You can download all packages from \033[35mhttps://pan.quark.cn/s/a84decc0b4dc\033[0m, then unzip them to"
+	@echo "\033[31m   $(SRC_DIR)/dl\033[0m"
+	@echo "Some packages can be found at \033[35mhttps://archive.spacemit.com/buildroot/dl\033[0m"
 	@echo ""
 	@echo "Step 1:\033[35m make patch \033[0m  Apply patches"
 	@echo "Step 2:\033[35m make repo  \033[0m  Initilize git repository and commit"

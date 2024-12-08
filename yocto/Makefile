@@ -9,14 +9,16 @@ SRC_DIR := $(CURR_DIR)/$(PROJECT_NAME)-$(VERSION)
 # where is the build results?
 DESTDIR := $(CURR_DIR)/build
 
-BB_NO_NETWORK=1
-
 # make
 .PHONY: all
 all:
-	@cd $(SRC_DIR) && source oe-init-build-env
-	@cd $(SRC_DIR) && bitbake meta-toolchain -c populate_sdk
-	# @install -D -t $(DESTDIR) $(SRC_DIR)/output/images/*
+	@echo ""
+	@echo "Can not build the SDK using \033[35mmake\033[0m command, please using following command:"
+	@echo ""
+	@echo "\033[35mexport BB_NO_NETWORK=1              \033[0m"
+	@echo "\033[35msource $(SRC_DIR)/oe-init-build-env \033[0m"
+	@echo "\033[35mbitbake meta-toolchain              \033[0m"
+	@echo ""
 
 # make clean
 .PHONY: clean
@@ -55,8 +57,12 @@ diff:
 # make help
 .PHONY: help
 help:
-	@echo "Requirements: \033[35m sudo apt install -y gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 python3-subunit zstd liblz4-tool file locales libacl1 \033[0m"
-	@echo "You can download all packages from \033[35m https://pan.quark.cn/s/d8b9ea5a37e6\033[0m, then unzip them to\033[31m $(SRC_DIR)/build/downloads\033[0m"
+	@echo ""
+	@echo "Requirements: \033[35msudo apt install -y gawk wget git diffstat unzip texinfo gcc build-essential \\"
+	@echo "  chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \\"
+	@echo "  python3-git python3-jinja2 python3-subunit zstd liblz4-tool file locales libacl1 \033[0m"
+	@echo "You can download all packages from \033[35mhttps://pan.quark.cn/s/d8b9ea5a37e6\033[0m, then unzip them to"
+	@echo "\033[31m   $(SRC_DIR)/build/downloads \033[0m"
 	@echo ""
 	@echo "Step 1:\033[35m make patch \033[0m  Apply patches"
 	@echo "Step 2:\033[35m make repo  \033[0m  Initilize git repository and commit"
