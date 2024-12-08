@@ -15,9 +15,10 @@ all:
 	@echo ""
 	@echo "Can not build the SDK using \033[35mmake\033[0m command, please using following command:"
 	@echo ""
-	@echo "\033[35mexport BB_NO_NETWORK=1              \033[0m"
-	@echo "\033[35msource $(SRC_DIR)/oe-init-build-env \033[0m"
-	@echo "\033[35mbitbake meta-toolchain              \033[0m"
+	@echo "\033[35mexport BB_NO_NETWORK=1                                     \033[0m"
+	@echo "\033[35msource $(SRC_DIR)/oe-init-build-env                        \033[0m"
+	@echo "\033[35mbitbake meta-toolchain -c populate_sdk                     \033[0m"
+	@echo "\033[35minstall -D -t $(DESTDIR) $(SRC_DIR)/build/tmp/deploy/sdk/* \033[0m"
 	@echo ""
 
 # make clean
