@@ -16,6 +16,13 @@ $(foreach module_name,$(MODULE_NAMES),\
 	$(eval PATH_x86 += $(SUBIDR)) \
 )
 
+PATH_BB :=
+$(foreach module_name,$(MODULE_NAMES),\
+	$(eval SUBDIR := $(shell find $(PATH_BB_ROOT) -name "$(module_name)_*.bb"))\
+	$(eval SRCDIR := $(shell grep SRC_URI $(SUBDIR) | tr -d ' ')) \
+	$(eval PATH_BB += $(SRCDIR) $(SUBDIR)) \
+)
+
 # Where is build result?
 DESTDIR := $(CURR_DIR)/build
 
