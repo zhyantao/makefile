@@ -18,9 +18,8 @@ $(foreach module_name,$(MODULE_NAMES),\
 
 PATH_BB :=
 $(foreach module_name,$(MODULE_NAMES),\
-	$(eval SUBDIR := $(shell find $(PATH_BB_ROOT) -name "$(module_name)_*.bb"))\
-	$(eval SRCDIR := $(shell grep SRC_URI $(SUBDIR) | tr -d ' ')) \
-	$(eval PATH_BB += $(SRCDIR) $(SUBDIR)) \
+	$(eval BBPATH := $(shell find $(PATH_BB_ROOT) -name "$(module_name)*.bb"))\
+	$(eval PATH_BB += $(BBPATH)) \
 )
 
 # Where is build result?
