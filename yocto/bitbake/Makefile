@@ -1,43 +1,49 @@
-CURR_DIR := $(shell pwd)
-DIR_NAME := $(notdir $(shell pwd))
+CURRENT_DIR := $(shell pwd)
+DIRECTORY_NAME := $(notdir $(shell pwd))
 TIMESTAMP := $(shell date +%Y%m%d)
 
-PROJ_NAME := poky-kirkstone-4.0.23
+PROJECT_NAME := poky-kirkstone-4.0.23
+
 MODULE_NAMES += bzip2
 MODULE_NAMES += glib-2.0
 
 # Where is source code?
-PATH_x86_ROOT := /home/yantao/workshop/makefile/yocto/$(PROJ_NAME)
-PATH_x86_BUILD := $(PATH_x86_ROOT)/build/tmp/work/core2-64-poky-linux
+PROJECT_ROOT := $(HOME)/workshop/makefile/yocto/$(PROJECT_NAME)
+TARGET_DIRECTORY := $(PROJECT_ROOT)/build/tmp/work/core2-64-poky-linux
 
-PATH_x86 :=
-$(foreach module_name,$(MODULE_NAMES),\
-	$(eval SUBIDR := $(shell ls -d $(PATH_x86_BUILD)/$(module_name)/*)) \
-	$(eval PATH_x86 += $(SUBIDR)) \
+X86_PATHS :=
+$(foreach module,$(MODULE_NAMES),\
+	$(eval SUBDIRECTORY := $(shell ls -d $(TARGET_DIRECTORY)/$(module)/*)) \
+	$(eval X86_PATHS += $(SUBDIRECTORY)) \
 )
 
-PATH_BB :=
-$(foreach module_name,$(MODULE_NAMES),\
-	$(eval BBPATH := $(shell find $(PATH_BB_ROOT) -name "$(module_name)*.bb"))\
-	$(eval PATH_BB += $(BBPATH)) \
+BB_FILE_PATHS :=
+$(foreach module,$(MODULE_NAMES),\
+	$(eval BB_FILE_PATH := $(shell find $(BB_ROOT_PATH) -name "$(module)*.bb"))\
+	$(eval BB_FILE_PATHS += $(BB_FILE_PATH)) \
 )
 
 # Where is build result?
-DESTDIR := $(CURR_DIR)/build
+DESTDIR := $(CURRENT_DIR)/build
 
 # make
 .PHONY: all
 all:
 	@echo ""
-	@echo "cd $(PATH_x86_ROOT) && source oe-init-build-env"
+	@echo "cd $(PROJECT_ROOT) && source oe-init-build-env"
 	@echo "cd $(PWD)"
 	@echo ""
-	@for dir in $(MODULE_NAMES); do \
-		echo "bitbake $$dir"; \
+	@for module in $(MODULE_NAMES); do \
+		echo "bitbake $$module"; \
+	done
+	@echo ""
+	@echo "bb Files on Linux:";
+	@for path in $(BB_FILE_PATHS); do \
+		echo $$path; \
 	done
 	@echo ""
 	@echo "Build Result on Linux:";
-	@for path in $(PATH_x86); do \
+	@for path in $(X86_PATHS); do \
 		echo $$path; \
 	done
 	@echo ""
@@ -51,8 +57,8 @@ clean:
 .PHONY: tarball
 tarball:
 	mkdir -p $(DESTDIR)
-	@for path in $(PATH_x86); do \
+	@for path in $(X86_PATHS); do \
 		cp -r $$path/image/* $(DESTDIR); \
 	done
-	cd $(DESTDIR) && tar czf build-$(DIR_NAME)_$(TIMESTAMP).tar.gz *
-	mv $(DESTDIR)/build-$(DIR_NAME)*.tar.gz .
+	cd $(DESTDIR) && tar czf build-$(DIRECTORY_NAME)_$(TIMESTAMP).tar.gz *
+	mv $(DESTDIR)/build-$(DIRECTORY_NAME)*.tar.gz .
