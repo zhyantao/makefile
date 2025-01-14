@@ -10,6 +10,7 @@ MODULE_NAMES += glib-2.0
 # Where is source code?
 PROJECT_ROOT := $(HOME)/workshop/makefile/yocto/$(PROJECT_NAME)
 TARGET_DIRECTORY := $(PROJECT_ROOT)/build/tmp/work/core2-64-poky-linux
+BB_ROOT_PATH := $(PROJECT_ROOT)/meta
 
 X86_PATHS :=
 $(foreach module,$(MODULE_NAMES),\
