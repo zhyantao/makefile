@@ -6,3 +6,4 @@ build
 .depend
 socket_server
 socket_client
+yocto/bitbake/*.tar.gz

@@ -52,7 +52,8 @@ all:
 # make clean
 .PHONY: clean
 clean:
-	rm $(DESTDIR)* -rf
+	rm -rf $(DESTDIR)*
+	rm -rf *.tar.gz
 
 # make tarball
 .PHONY: tarball
