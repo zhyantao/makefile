@@ -2,7 +2,7 @@ CURRENT_DIR := $(shell pwd)
 DIRECTORY_NAME := $(notdir $(shell pwd))
 TIMESTAMP := $(shell date +%Y%m%d)
 
-PROJECT_NAME := poky-kirkstone-4.0.23
+PROJECT_NAME ?= poky-kirkstone-4.0.23
 
 MODULE_NAMES += bzip2
 MODULE_NAMES += glib-2.0
