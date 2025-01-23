@@ -12,10 +12,10 @@ PROJECT_ROOT := $(HOME)/workshop/makefile/yocto/$(PROJECT_NAME)
 TARGET_DIRECTORY := $(PROJECT_ROOT)/build/tmp/work/core2-64-poky-linux
 BB_ROOT_PATH := $(PROJECT_ROOT)/meta
 
-X86_PATHS :=
+MODULE_PATHS :=
 $(foreach module,$(MODULE_NAMES),\
-	$(eval SUBDIRECTORY := $(shell ls -d $(TARGET_DIRECTORY)/$(module)/*)) \
-	$(eval X86_PATHS += $(SUBDIRECTORY)) \
+	$(eval MODULE_PATH := $(shell ls -d $(TARGET_DIRECTORY)/$(module)/*)) \
+	$(eval MODULE_PATHS += $(MODULE_PATH)) \
 )
 
 BB_FILE_PATHS :=
@@ -44,7 +44,7 @@ all:
 	done
 	@echo ""
 	@echo "Build Result on Linux:";
-	@for path in $(X86_PATHS); do \
+	@for path in $(MODULE_PATHS); do \
 		echo $$path; \
 	done
 	@echo ""
@@ -59,7 +59,7 @@ clean:
 .PHONY: tarball
 tarball:
 	mkdir -p $(DESTDIR)
-	@for path in $(X86_PATHS); do \
+	@for path in $(MODULE_PATHS); do \
 		cp -r $$path/image/* $(DESTDIR); \
 	done
 	cd $(DESTDIR) && tar czf build-$(DIRECTORY_NAME)_$(TIMESTAMP).tar.gz *
