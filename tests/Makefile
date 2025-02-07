@@ -35,6 +35,7 @@ uninstall :
 clean :
 	rm -f *.o *~ core .depend
 	rm -f ${TARGETS}
+	rm -rf $(DESTDIR)
 
 .PHONY: patch
 patch:
