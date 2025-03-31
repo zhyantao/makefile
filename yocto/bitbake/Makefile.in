@@ -8,9 +8,9 @@ MODULE_NAMES += bzip2
 MODULE_NAMES += glib-2.0
 
 # Where is source code?
-PROJECT_ROOT := $(HOME)/workshop/makefile/yocto/$(PROJECT_DIR)
-TARGET_DIRECTORY := $(PROJECT_ROOT)/build/tmp/work/core2-64-poky-linux
-BB_ROOT_PATH := $(PROJECT_ROOT)/meta
+PROJECT_PATH := $(HOME)/workshop/makefile/yocto/$(PROJECT_DIR)
+TARGET_DIRECTORY := $(PROJECT_PATH)/build/tmp/work/core2-64-poky-linux
+BB_ROOT_PATH := $(PROJECT_PATH)/meta
 
 MODULE_PATHS :=
 $(foreach module,$(MODULE_NAMES),\
@@ -31,7 +31,7 @@ DESTDIR := $(CURRENT_DIR)/build
 .PHONY: all
 all:
 	@echo ""
-	@echo "cd $(PROJECT_ROOT) && source oe-init-build-env"
+	@echo "cd $(PROJECT_PATH) && source oe-init-build-env"
 	@echo "cd $(PWD)"
 	@echo ""
 	@for module in $(MODULE_NAMES); do \
