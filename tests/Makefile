@@ -23,7 +23,7 @@ OBJS := $(addprefix $(BUILDTMP_DIR)/, $(TARGETS:=.o))
 .PHONY : all depend dep
 
 # Default target
-all : .depend $(TARGETS)
+all : .depend $(TARGETS) install
 
 # Create buildtmp directory
 $(BUILDTMP_DIR):
