@@ -8,11 +8,11 @@ SITE_PACKAGES_DIR = $(shell python -c "import site; print(site.getsitepackages()
 # Define targets
 TARGETS := socket_server socket_client
 
-CFLAGS += -Wall -O2 -D_GNU_SOURCE
-CFLAGS += -ggdb
-CFLAGS += -fPIC
+CXXFLAGS += -Wall -O2 -D_GNU_SOURCE
+CXXFLAGS += -ggdb
+CXXFLAGS += -fPIC
 ifdef SYSROOT
-CFLAGS += --sysroot $(SYSROOT)
+CXXFLAGS += --sysroot $(SYSROOT)
 endif
 
 LDLIBS += -lpthread
@@ -31,7 +31,7 @@ $(BUILDTMP_DIR):
 
 # Generate dependency file
 .depend depend dep : $(BUILDTMP_DIR)
-	$(CC) $(CFLAGS) -M $(TARGETS:=.cc) > $(BUILDTMP_DIR)/.depend
+	$(CXX) $(CXXFLAGS) -M $(TARGETS:=.cc) > $(BUILDTMP_DIR)/.depend
 
 # Include dependency file if exists
 ifeq ($(wildcard $(BUILDTMP_DIR)/.depend),$(BUILDTMP_DIR)/.depend)
@@ -40,11 +40,11 @@ endif
 
 # Compile source files into object files in buildtmp directory
 $(BUILDTMP_DIR)/%.o: %.cc $(BUILDTMP_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Link object files to create executables
 $(TARGETS): %: $(BUILDTMP_DIR)/%.o
-	$(CC) $< -o $(BUILDTMP_DIR)/$@ $(LDLIBS)
+	$(CXX) $< -o $(BUILDTMP_DIR)/$@ $(LDLIBS)
 
 # Install executables to build directory
 install : all
