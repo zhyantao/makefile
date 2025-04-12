@@ -1,3 +1,5 @@
+project/hello
+*.o
 buildroot-2023.02.9
 poky-kirkstone-4.0.23
 linuxptp-4.2
