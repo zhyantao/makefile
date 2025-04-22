@@ -1,9 +1,9 @@
 # 区分 C 和 C++ 编译器及编译选项
-CC       := gcc
-CXX      := g++
-CFLAGS   := -Wall -O2
-CXXFLAGS := -Wall -O2
-LDFLAGS  :=
+#CC       := gcc
+#CXX      := g++
+CFLAGS   += -Wall -O2
+CXXFLAGS += -Wall -O2
+LDFLAGS  +=
 
 # 定义构建目录并确保其存在
 BUILD_DIR := build
