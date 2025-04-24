@@ -10,7 +10,7 @@ SRCS_C  := $(wildcard *.c)
 SRCS_CC := $(wildcard *.cc)
 OBJS    := $(SRCS_C:.c=.o) $(SRCS_CC:.cc=.o)
 
-TARGET := hello
+TARGET := hello_world
 
 .PHONY: all clean
 
@@ -32,4 +32,4 @@ DEP_FILES := $(OBJS:.o=.d)
 -include $(DEP_FILES)
 
 clean:
-	rm -rf $(OBJS) $(TARGET)
+	rm -rf $(DEP_FILES) $(OBJS) $(TARGET)
