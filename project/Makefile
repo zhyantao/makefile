@@ -20,7 +20,11 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
-# 静态模式规则：分别编译 C 和 C++ 文件
+# 静态模式规则：针对特定目标列表的模式规则
+#$(OBJS): %.o: %.c
+#	$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -c $< -o $@
+
+# 普通模式规则：通用的、隐式的模式规则，适用于所有匹配的目标
 %.o: %.c
 	$(CC) $(CFLAGS) -MMD -c $< -o $@
 
