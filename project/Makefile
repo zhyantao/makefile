@@ -18,7 +18,7 @@ all: $(TARGET)
 
 # 链接阶段使用 C++ 编译器（兼容 C 对象文件）
 $(TARGET): $(OBJS)
-	$(CXX) -o $@ $^ $(LDFLAGS)
+	$(CXX) $(LDFLAGS) -o $@ $^
 
 # 静态模式规则：针对特定目标列表的模式规则
 #$(OBJS): %.o: %.c
